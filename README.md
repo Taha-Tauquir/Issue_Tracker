@@ -1,4 +1,4 @@
-# Issue Tracker - Full Stack Application
+# Issue Tracker 
 
 A modern, full-stack issue tracking application built with React, TypeScript, Node.js, Express, and PostgreSQL. This project demonstrates clean architecture, type safety, and professional development practices.
 
