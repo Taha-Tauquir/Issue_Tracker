@@ -1,0 +1,149 @@
+openapi: 3.0.0
+info:
+  title: Issue Tracker API
+  version: 1.0.0
+  description: API for managing issues (CRUD operations)
+
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+
+paths:
+  /api/issues:
+    get:
+      summary: Get all issues
+      tags:
+        - Issues
+      responses:
+        "200":
+          description: List of issues
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Issue"
+
+    post:
+      summary: Create a new issue
+      tags:
+        - Issues
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IssueCreate"
+      responses:
+        "201":
+          description: Issue created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Issue"
+
+  /api/issues/{id}:
+    get:
+      summary: Get issue by ID
+      tags:
+        - Issues
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Issue details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Issue"
+        "404":
+          description: Issue not found
+
+    put:
+      summary: Update an issue
+      tags:
+        - Issues
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IssueCreate"
+      responses:
+        "200":
+          description: Issue updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Issue"
+        "404":
+          description: Issue not found
+
+    delete:
+      summary: Delete an issue
+      tags:
+        - Issues
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Issue deleted successfully
+        "404":
+          description: Issue not found
+
+components:
+  schemas:
+    Issue:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: Test Issue
+        description:
+          type: string
+          example: This is a sample issue
+        status:
+          type: string
+          enum: [open, in-progress, closed]
+          example: open
+        created_at:
+          type: string
+          example: "2025-01-01T12:00:00Z"
+        updated_at:
+          type: string
+          example: "2025-01-01T12:10:00Z"
+
+    IssueCreate:
+      type: object
+      required:
+        - title
+        - description
+        - status
+      properties:
+        title:
+          type: string
+          example: Test Issue
+        description:
+          type: string
+          example: This is a sample issue
+        status:
+          type: string
+          enum: [open, in-progress, closed]
+          example: open
