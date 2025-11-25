@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://root:root@localhost:5332/bank?schema=public"
+}
+
+model Issue {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  status      String   @default("open")
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
