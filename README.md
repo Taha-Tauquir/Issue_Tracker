@@ -83,12 +83,12 @@ npm install
 
 Generate Prisma client:
 ```bash
-npm run prisma:generate
+npx prisma generate --schema=./src/prisma/schema.prisma
 ```
 
 Run database migrations:
 ```bash
-npm run prisma:migrate
+npx prisma migrate dev --schema=./src/prisma/schema.prisma --name init
 ```
 
 Start the development server:
