@@ -1,4 +1,5 @@
 # Issue Tracker 
+![Issue Tracker Preview](https://i.ibb.co/qFpxgh0s/tst.png)
 
 A modern, full-stack issue tracking application built with React, TypeScript, Node.js, Express, and PostgreSQL. This project demonstrates clean architecture, type safety, and professional development practices.
 
